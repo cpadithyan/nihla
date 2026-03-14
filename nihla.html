@@ -38,11 +38,6 @@
             text-shadow: 0 0 10px rgba(0, 242, 255, 0.5), 0 0 20px rgba(0, 242, 255, 0.2);
         }
 
-        .neon-border {
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
-        }
-
         #canvas-bg {
             position: fixed;
             top: 0;
@@ -50,27 +45,6 @@
             z-index: -1;
             width: 100%;
             height: 100%;
-        }
-
-        .glitch-wrapper {
-            position: relative;
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        .hover-glitch:hover {
-            animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
-        }
-
-        .category-card:hover .category-overlay {
-            opacity: 1;
         }
 
         .custom-cursor {
@@ -85,11 +59,45 @@
             transform: translate(-50%, -50%);
         }
 
+        .ig-grid-item {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .ig-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 242, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: black;
+            font-weight: bold;
+        }
+
+        .ig-grid-item:hover .ig-overlay {
+            opacity: 1;
+        }
+
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
         section { padding: 100px 0; }
+        
+        .role-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            padding: 2px 8px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-radius: 4px;
+            display: inline-block;
+            margin: 2px;
+        }
     </style>
 </head>
 <body>
@@ -105,166 +113,146 @@
         <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
             <a href="#home" class="hover:text-[#00f2ff] transition-colors">Home</a>
             <a href="#work" class="hover:text-[#00f2ff] transition-colors">Work</a>
-            <a href="#services" class="hover:text-[#00f2ff] transition-colors">Services</a>
+            <a href="#instagram" class="hover:text-[#00f2ff] transition-colors">Feed</a>
             <a href="#contact" class="hover:text-[#00f2ff] transition-colors">Contact</a>
         </div>
-        <button class="md:hidden text-white" id="mobile-menu-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
-        </button>
+        <a href="#contact" class="hidden md:block px-6 py-2 border border-[#00f2ff] text-[#00f2ff] text-xs font-bold uppercase hover:bg-[#00f2ff] hover:text-black transition-all">
+            Let's Talk
+        </a>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center px-6 relative">
-        <div class="text-center z-10">
-            <h2 class="text-sm uppercase tracking-[0.5em] mb-4 text-[#00f2ff] font-sync opacity-80">Director • Photographer • Editor</h2>
+        <div class="text-center z-10 max-w-5xl">
+            <div class="mb-6 flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
+                <span class="role-tag">CREATIVE DIRECTOR</span>
+                <span class="role-tag">PHOTOGRAPHER</span>
+                <span class="role-tag">VIDEOGRAPHER</span>
+                <span class="role-tag">EDITOR</span>
+                <span class="role-tag">CINEMATOGRAPHER</span>
+                <span class="role-tag">CONTENT CREATOR</span>
+                <span class="role-tag">GRAPHIC DESIGNER</span>
+            </div>
             <h1 class="text-6xl md:text-9xl font-sync font-bold mb-8 leading-tight tracking-tighter">
-                VISUAL<br><span class="text-transparent" style="-webkit-text-stroke: 1px #fff;">ALCHEMY</span>
+                LIMITLESS<br><span class="text-transparent" style="-webkit-text-stroke: 1px #fff;">VISION</span>
             </h1>
             <p class="max-w-xl mx-auto text-gray-400 text-lg mb-10 leading-relaxed">
-                Transforming moments into cinematic dimensions. specialized in high-end fashion, commercial storytelling, and avant-garde post-production.
+                Nihla Fathima is a multi-disciplinary visual architect crafting high-fidelity narratives through the lens and digital canvas.
             </p>
             <div class="flex flex-col md:flex-row items-center justify-center gap-6">
                 <a href="#work" class="px-10 py-4 bg-[#00f2ff] text-black font-bold uppercase tracking-widest hover:bg-white transition-all transform hover:scale-105">
-                    View Projects
+                    Explore Gallery
                 </a>
-                <a href="#contact" class="px-10 py-4 border border-white/20 hover:border-[#00f2ff] font-bold uppercase tracking-widest transition-all">
-                    Inquire Now
+                <a href="#instagram" class="px-10 py-4 border border-white/20 hover:border-[#00f2ff] font-bold uppercase tracking-widest transition-all">
+                    Social Feed
                 </a>
             </div>
-        </div>
-        <div class="absolute bottom-10 animate-bounce opacity-30">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
         </div>
     </section>
 
-    <!-- Work Gallery -->
-    <section id="work" class="px-6 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div>
-                <h2 class="text-4xl font-sync font-bold mb-2">SELECTED WORKS</h2>
-                <div class="w-20 h-1 bg-[#00f2ff]"></div>
+    <!-- Instagram Showcase -->
+    <section id="instagram" class="px-6 max-w-7xl mx-auto py-24">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-sync font-bold mb-4">DIGITAL FOOTPRINT</h2>
+            <p class="text-gray-400 uppercase tracking-widest text-xs">Curated moments from Instagram</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <!-- IG Item 1 -->
+            <div class="ig-grid-item group">
+                <svg class="w-full h-full object-cover bg-zinc-900 p-8 opacity-40 group-hover:opacity-100 transition-opacity" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                    <rect x="10" y="10" width="80" height="80" stroke-width="0.5" />
+                    <circle cx="50" cy="50" r="20" stroke-width="0.5" />
+                </svg>
+                <div class="ig-overlay">
+                    <a href="https://www.instagram.com/nihla__nizar/" target="_blank">VIEW POST</a>
+                </div>
             </div>
-            <div class="flex gap-4">
-                <button class="px-4 py-2 text-xs uppercase tracking-widest border border-white/10 hover:border-[#00f2ff] transition-all">All</button>
-                <button class="px-4 py-2 text-xs uppercase tracking-widest border border-white/10 hover:border-[#00f2ff] transition-all">Video</button>
-                <button class="px-4 py-2 text-xs uppercase tracking-widest border border-white/10 hover:border-[#00f2ff] transition-all">Photo</button>
+            <!-- IG Item 2 -->
+            <div class="ig-grid-item group">
+                <svg class="w-full h-full object-cover bg-zinc-800 p-8 opacity-40 group-hover:opacity-100 transition-opacity" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                    <path d="M20 80 L50 20 L80 80 Z" stroke-width="0.5" />
+                </svg>
+                <div class="ig-overlay">
+                    <a href="https://www.instagram.com/lensofnihla/" target="_blank">VIEW POST</a>
+                </div>
+            </div>
+            <!-- IG Item 3 -->
+            <div class="ig-grid-item group">
+                <div class="w-full h-full bg-zinc-900 flex items-center justify-center border border-white/10 group-hover:border-[#00f2ff]">
+                    <span class="text-[10px] tracking-[0.5em] text-white/30">BTS_042</span>
+                </div>
+                <div class="ig-overlay">
+                    <a href="https://www.instagram.com/nihla__nizar/" target="_blank">VIEW POST</a>
+                </div>
+            </div>
+            <!-- IG Item 4 -->
+            <div class="ig-grid-item group">
+                <svg class="w-full h-full object-cover bg-zinc-800 p-8 opacity-40 group-hover:opacity-100 transition-opacity" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                    <rect x="20" y="20" width="60" height="60" rx="30" stroke-width="0.5" />
+                </svg>
+                <div class="ig-overlay">
+                    <a href="https://www.instagram.com/lensofnihla/" target="_blank">VIEW POST</a>
+                </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Project 1 -->
-            <div class="group relative aspect-[4/5] glass overflow-hidden cursor-pointer">
-                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 opacity-60"></div>
-                <!-- Mock SVG Image Placeholder -->
-                <svg class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="400" height="500" fill="#1a1a1a"/>
-                    <circle cx="200" cy="200" r="100" fill="#222" />
-                    <rect x="150" y="350" width="100" height="10" fill="#333" />
-                </svg>
-                <div class="absolute inset-0 z-20 flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <span class="text-[#00f2ff] text-xs font-bold uppercase mb-2 tracking-widest">Cinematography</span>
-                    <h3 class="text-2xl font-sync font-bold mb-4">NEON DREAMS</h3>
-                    <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="px-2 py-1 text-[10px] border border-white/30 uppercase">4K RAW</span>
-                        <span class="px-2 py-1 text-[10px] border border-white/30 uppercase">Color Graded</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="group relative aspect-[4/5] glass overflow-hidden cursor-pointer">
-                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 opacity-60"></div>
-                <svg class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="400" height="500" fill="#111"/>
-                    <path d="M50 450 L200 50 L350 450 Z" fill="#222" />
-                </svg>
-                <div class="absolute inset-0 z-20 flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <span class="text-[#00f2ff] text-xs font-bold uppercase mb-2 tracking-widest">Fashion Photography</span>
-                    <h3 class="text-2xl font-sync font-bold mb-4">SILK & STEEL</h3>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="group relative aspect-[4/5] glass overflow-hidden cursor-pointer">
-                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 opacity-60"></div>
-                <svg class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="400" height="500" fill="#1a1a1a"/>
-                    <rect x="50" y="50" width="300" height="400" fill="none" stroke="#222" stroke-width="2" />
-                </svg>
-                <div class="absolute inset-0 z-20 flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <span class="text-[#00f2ff] text-xs font-bold uppercase mb-2 tracking-widest">Creative Editing</span>
-                    <h3 class="text-2xl font-sync font-bold mb-4">TIME REVERSED</h3>
-                </div>
-            </div>
+        <div class="flex flex-col md:flex-row justify-center gap-6">
+            <a href="https://www.instagram.com/nihla__nizar/" target="_blank" class="flex items-center gap-3 px-8 py-3 glass hover:border-[#00f2ff] transition-all">
+                <span class="text-xs font-bold tracking-widest">@nihla__nizar</span>
+            </a>
+            <a href="https://www.instagram.com/lensofnihla/" target="_blank" class="flex items-center gap-3 px-8 py-3 glass hover:border-[#00f2ff] transition-all">
+                <span class="text-xs font-bold tracking-widest">@lensofnihla</span>
+            </a>
         </div>
     </section>
 
     <!-- Services -->
     <section id="services" class="bg-white/5 py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-sync font-bold mb-16 text-center">CORE CAPABILITIES</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="p-10 glass hover:bg-white/10 group transition-all">
-                    <div class="text-[#00f2ff] mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-                    </div>
-                    <h3 class="text-xl font-sync mb-4">VIDEOGRAPHY</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Full-service production from conceptualization to filming. Specializing in commercials, music videos, and fashion films.</p>
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-sync font-bold mb-16">CAPABILITIES</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="p-8 glass hover:bg-white/10 transition-all text-left">
+                    <h3 class="text-[#00f2ff] font-sync text-sm mb-4">PRODUCTION</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed uppercase tracking-tighter">Direction, Cinematography, Content Creation</p>
                 </div>
-                <div class="p-10 glass hover:bg-white/10 group transition-all">
-                    <div class="text-[#00f2ff] mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                    </div>
-                    <h3 class="text-xl font-sync mb-4">PHOTOGRAPHY</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Capturing high-fidelity stills that resonate. Expertise in editorial, portraiture, and architectural photography.</p>
+                <div class="p-8 glass hover:bg-white/10 transition-all text-left">
+                    <h3 class="text-[#00f2ff] font-sync text-sm mb-4">STILLS</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed uppercase tracking-tighter">Editorial Photography, Portraiture, Fashion</p>
                 </div>
-                <div class="p-10 glass hover:bg-white/10 group transition-all">
-                    <div class="text-[#00f2ff] mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    </div>
-                    <h3 class="text-xl font-sync mb-4">POST-PRODUCTION</h3>
-                    <p class="text-gray-400 leading-relaxed text-sm">Precision editing, color grading, and VFX. Bringing raw footage to its maximum cinematic potential.</p>
+                <div class="p-8 glass hover:bg-white/10 transition-all text-left">
+                    <h3 class="text-[#00f2ff] font-sync text-sm mb-4">DESIGN</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed uppercase tracking-tighter">Graphic Design, Visual Identity, Layouts</p>
+                </div>
+                <div class="p-8 glass hover:bg-white/10 transition-all text-left">
+                    <h3 class="text-[#00f2ff] font-sync text-sm mb-4">FINISHING</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed uppercase tracking-tighter">Post-Production, Color Grading, Retouching</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="max-w-4xl mx-auto px-6 mb-24">
-        <div class="glass p-12 relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 opacity-10">
-                <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M100 0 L200 100 L100 200 L0 100 Z" fill="white" />
-                </svg>
-            </div>
-            <h2 class="text-4xl font-sync font-bold mb-8">INITIATE COLLABORATION</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <p class="text-gray-400 mb-8 leading-relaxed">
-                        Ready to elevate your project? Send a brief description of your requirements and let's create something extraordinary.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <span class="text-[#00f2ff] uppercase text-xs font-bold tracking-widest w-20">Email:</span>
-                            <span class="text-sm">hello@nihlafathima.com</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="text-[#00f2ff] uppercase text-xs font-bold tracking-widest w-20">Based:</span>
-                            <span class="text-sm">Global / Digital Remote</span>
-                        </div>
+    <section id="contact" class="max-w-5xl mx-auto px-6 mb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-6xl font-sync font-bold mb-8">GET IN<br>TOUCH</h2>
+                <div class="space-y-6">
+                    <div class="glass p-6">
+                        <p class="text-[#00f2ff] text-xs font-bold uppercase tracking-widest mb-2">Primary Email</p>
+                        <a href="mailto:nihlanizar2@gmail.com" class="text-xl hover:text-[#00f2ff] transition-colors">nihlanizar2@gmail.com</a>
+                    </div>
+                    <div class="glass p-6">
+                        <p class="text-[#00f2ff] text-xs font-bold uppercase tracking-widest mb-2">Direct Line</p>
+                        <a href="tel:+918075740498" class="text-xl hover:text-[#00f2ff] transition-colors">+91 8075 740498</a>
                     </div>
                 </div>
-                <form class="space-y-6" onsubmit="event.preventDefault(); alert('Message sent to the future!')">
-                    <div>
-                        <input type="text" placeholder="FULL NAME" class="w-full bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-[#00f2ff] transition-colors text-sm uppercase tracking-widest">
-                    </div>
-                    <div>
-                        <input type="email" placeholder="EMAIL ADDRESS" class="w-full bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-[#00f2ff] transition-colors text-sm uppercase tracking-widest">
-                    </div>
-                    <div>
-                        <textarea placeholder="PROJECT BRIEF" rows="3" class="w-full bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-[#00f2ff] transition-colors text-sm uppercase tracking-widest"></textarea>
-                    </div>
-                    <button class="w-full py-4 bg-white text-black font-bold uppercase tracking-tighter hover:bg-[#00f2ff] transition-all">
+            </div>
+            <div class="glass p-10">
+                <form class="space-y-6" onsubmit="event.preventDefault();">
+                    <input type="text" placeholder="NAME" class="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-[#00f2ff] transition-colors uppercase text-xs tracking-[0.3em]">
+                    <textarea placeholder="TELL ME ABOUT YOUR PROJECT" rows="4" class="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-[#00f2ff] transition-colors uppercase text-xs tracking-[0.3em]"></textarea>
+                    <button class="w-full py-5 bg-[#00f2ff] text-black font-bold uppercase tracking-[0.3em] hover:bg-white transition-all text-xs">
                         SEND SIGNAL
                     </button>
                 </form>
@@ -274,13 +262,14 @@
 
     <!-- Footer -->
     <footer class="py-12 border-t border-white/5 text-center px-6">
-        <div class="font-sync text-sm mb-6 opacity-50 uppercase tracking-widest">
-            © 2024 NIHLA FATHIMA • VISUAL ARCHITECT
+        <div class="font-sync text-[10px] mb-8 opacity-50 uppercase tracking-[0.5em]">
+            NIHLA FATHIMA • VISUAL ARCHITECT • 2024
         </div>
-        <div class="flex justify-center gap-8 mb-8">
-            <a href="#" class="hover:text-[#00f2ff] transition-colors text-xs uppercase tracking-[0.3em]">Instagram</a>
-            <a href="#" class="hover:text-[#00f2ff] transition-colors text-xs uppercase tracking-[0.3em]">Vimeo</a>
-            <a href="#" class="hover:text-[#00f2ff] transition-colors text-xs uppercase tracking-[0.3em]">Behance</a>
+        <div class="flex flex-wrap justify-center gap-6 md:gap-12">
+            <a href="https://www.instagram.com/nihla__nizar/" target="_blank" class="hover:text-[#00f2ff] transition-colors text-[10px] uppercase tracking-[0.3em]">Personal IG</a>
+            <a href="https://www.instagram.com/lensofnihla/" target="_blank" class="hover:text-[#00f2ff] transition-colors text-[10px] uppercase tracking-[0.3em]">Portfolio IG</a>
+            <a href="#" class="hover:text-[#00f2ff] transition-colors text-[10px] uppercase tracking-[0.3em]">Behance</a>
+            <a href="#" class="hover:text-[#00f2ff] transition-colors text-[10px] uppercase tracking-[0.3em]">LinkedIn</a>
         </div>
     </footer>
 
@@ -292,7 +281,7 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        document.querySelectorAll('a, button, .cursor-pointer').forEach(el => {
+        document.querySelectorAll('a, button, .group').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
                 cursor.style.backgroundColor = 'rgba(0, 242, 255, 0.1)';
@@ -312,22 +301,21 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             particles = [];
-            for(let i = 0; i < 60; i++) {
+            for(let i = 0; i < 70; i++) {
                 particles.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    size: Math.random() * 2 + 1,
-                    speedX: (Math.random() - 0.5) * 0.5,
-                    speedY: (Math.random() - 0.5) * 0.5,
-                    opacity: Math.random() * 0.5 + 0.1
+                    size: Math.random() * 1.5 + 0.5,
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    speedY: (Math.random() - 0.5) * 0.3,
+                    opacity: Math.random() * 0.4 + 0.1
                 });
             }
         }
 
         function drawParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#050505';
-            ctx.fillRect(0,0, canvas.width, canvas.height);
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach(p => {
                 ctx.beginPath();
@@ -342,17 +330,14 @@
                 if(p.y < 0 || p.y > canvas.height) p.speedY *= -1;
             });
 
-            // Connect lines
             for(let i = 0; i < particles.length; i++) {
                 for(let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if(distance < 150) {
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if(dist < 180) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 242, 255, ${0.1 * (1 - distance/150)})`;
-                        ctx.lineWidth = 0.5;
+                        ctx.strokeStyle = `rgba(0, 242, 255, ${0.08 * (1 - dist/180)})`;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
@@ -366,13 +351,11 @@
         initCanvas();
         drawParticles();
 
-        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
             });
         });
     </script>
